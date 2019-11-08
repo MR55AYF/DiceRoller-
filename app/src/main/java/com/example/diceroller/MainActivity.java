@@ -1,5 +1,6 @@
 package com.example.diceroller;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -57,10 +58,11 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @SuppressLint("SetTextI18n")
     public void on_button_click(View view) {
         TextView tv = this.findViewById(R.id.textView);
         Random r = new Random();
-        int number = r.nextInt(6);
+        int number = r.nextInt(7 - 1) + 1;
 
         tv.setText(Integer.toString(number));
 
@@ -73,17 +75,15 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Invalid Input Number", Toast.LENGTH_SHORT).show();
 
         } else if (n == number) {
-            Toast.makeText(this, "Congratulations, You guessed the number", Toast.LENGTH_SHORT).show();
-
             counter++;
 
-            TextView scoreCard = this.findViewById(R.id.userScore);
+            Toast.makeText(this, "Congratulations, You guessed the number", Toast.LENGTH_SHORT).show();
 
-            scoreCard.setText("Your Score:" + (counter));
+            TextView scoreCard = this.findViewById(R.id.userScore);
+            scoreCard.setText("Your Score:" + counter);
         }
 
-    }
-}
+    }}
 
 
 
